@@ -1,6 +1,9 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { Heading, Pane } from 'evergreen-ui';
+import { NavLink } from 'react-router-dom';
+import logo from './logo.jpg';
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -10,10 +13,7 @@ export const PageWrapper = styled.div`
 
 export const PageHeader = styled.div`
   align-items: center;
-  background-size: cover;
-  background: #555;
   box-sizing: border-box;
-  color: #fff;
   display: flex;
   flex: none;
   padding: 1rem 2rem;
@@ -22,15 +22,10 @@ export const PageHeader = styled.div`
 
 export const Title = styled.div`
   margin-left: 2rem;
-`;
-
-export const Heading = styled.div`
-  font-size: 2rem;
-  margin: 0.2rem 0;
-`;
-
-export const SubHeading = styled.div`
-  font-size: 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;
 
 export const PageFooter = styled.div`
@@ -46,22 +41,58 @@ export const PageContent = styled.div`
   padding: 1.5rem 3rem;
 `;
 
+const Logo = styled.img`
+  height: 180px;
+`;
+
 type Props = {
   children: React$Element<*> | Array<React$Element<*>>,
-  buttons: React$Element<*> | Array<React$Element<*>>,
 };
 
-function Page({ children, buttons }: Props) {
+const PageLink = styled(NavLink).attrs({ activeClassName: 'nav-active' })`
+  color: #095534;
+  text-decoration: none;
+  padding: 12px;
+  margin: 12px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #095534;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: #0a8851;
+    border-bottom-color: #0a8851;
+  }
+
+  &.nav-active {
+    color: #0a8851;
+    border-bottom-color: #0a8851;
+    font-weight: bold;
+  }
+`;
+
+function Page({ children }: Props) {
   return (
     <PageWrapper>
       <PageHeader>
+        <Logo src={logo} />
         <Title>
-          <Heading>Talking Heads</Heading>
-          <SubHeading>By CrowdLab</SubHeading>
+          <Heading margin="default" size={800}>
+            Patrick & Graces Wedding
+          </Heading>
+          <Heading>10th August 2019</Heading>
         </Title>
       </PageHeader>
+      <Pane display="flex" alignItems="center" justifyContent="center">
+        <PageLink to="/" exact>
+          Home
+        </PageLink>
+        <PageLink to="/rsvp">RSVP</PageLink>
+        <PageLink to="/service">The Service</PageLink>
+        <PageLink to="/reception">Reception</PageLink>
+        <PageLink to="/information">Useful Information</PageLink>
+      </Pane>
       <PageContent>{children}</PageContent>
-      <PageFooter>{buttons}</PageFooter>
     </PageWrapper>
   );
 }
