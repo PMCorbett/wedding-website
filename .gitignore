@@ -1,0 +1,17 @@
+# Local environment
+.envrc
+
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+.webpack
+
+.jest/
+junit.xml
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+client/build

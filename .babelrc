@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "crowdlab",
+    "flow"
+  ],
+  "plugins": [
+    "styled-components"
+  ]
+}
