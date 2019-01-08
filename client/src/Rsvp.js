@@ -25,15 +25,19 @@ class Rsvp extends Component<Props, State> {
     failed: false,
   };
 
-  updateText = (stateField) => (event) => {
+  updateText = (stateField: string) => (
+    event: SyntheticInputEvent<HTMLInputElement>
+  ) => {
     this.setState({ [stateField]: event.target.value });
   };
 
-  updateNumber = (stateField) => (event) => {
+  updateNumber = (stateField: string) => (
+    event: SyntheticInputEvent<HTMLInputElement>
+  ) => {
     this.setState({ [stateField]: +event.target.value });
   };
 
-  updateRadio = (stateField) => (value) => {
+  updateRadio = (stateField: string) => (value: 'accept' | 'decline') => {
     this.setState({ [stateField]: value });
   };
 

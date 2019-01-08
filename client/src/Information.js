@@ -1,8 +1,30 @@
 // @flow
 import React from 'react';
+import styled from 'styled-components';
 import { Pane, Paragraph, Heading, Link } from 'evergreen-ui';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+
+const MapWrapper = styled.div`
+  width: 500px;
+  height: 350px;
+
+  .leaflet-container {
+    height: 400px;
+    width: 100%;
+  }
+`;
 
 function Information() {
+  const churchPosition = [52.5402, -1.3719];
+  const badgersPosition = [52.5603, -1.3105];
+
+  const centerPosition = [
+    (churchPosition[0] + badgersPosition[0]) / 2,
+    (churchPosition[1] + badgersPosition[1]) / 2,
+  ];
+
+  const zoom = 12;
+
   return (
     <Pane display="flex" alignItems="center">
       <Pane>
@@ -20,7 +42,26 @@ function Information() {
           </Link>
         </Paragraph>
       </Pane>
-      <Pane />
+      <Pane margin={24}>
+        <MapWrapper>
+          <Map center={centerPosition} zoom={zoom}>
+            <TileLayer
+              attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={churchPosition}>
+              <Popup>
+                St Mary&apos;s Church
+                <br />
+                Service starts at 1.30pm 10th August 2019
+              </Popup>
+            </Marker>
+            <Marker position={badgersPosition}>
+              <Popup>Badgers Mount Hotel</Popup>
+            </Marker>
+          </Map>
+        </MapWrapper>
+      </Pane>
     </Pane>
   );
 }

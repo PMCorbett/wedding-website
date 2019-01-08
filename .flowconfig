@@ -15,6 +15,8 @@
 ; https://github.com/facebook/draft-js/issues/1621
 .*/node_modules/draft-js/lib/ContentBlock.js.flow
 .*/node_modules/draft-js/lib/ContentBlockNode.js.flow
+# suppresses this issue: https://github.com/PaulLeCam/react-leaflet/issues/364
+.*/node_modules/react-leaflet/.*
 
 [libs]
 
@@ -25,4 +27,3 @@ module.file_ext=.js
 module.file_ext=.json
 module.file_ext=.md
 module.name_mapper.extension='md' -> 'empty/object'
-
