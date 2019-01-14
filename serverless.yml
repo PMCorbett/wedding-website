@@ -104,8 +104,8 @@ custom:
     dev: patrickandgrace.com
     prod: patrickandgrace.com
   certificate:
-    dev: arn:aws:acm:us-east-1:963777545862:certificate/2065fb62-d3fe-42ca-b264-bd49310dc330
-    prod: arn:aws:acm:us-east-1:963777545862:certificate/2065fb62-d3fe-42ca-b264-bd49310dc330
+    dev: arn:aws:acm:us-east-1:963777545862:certificate/ee3a5994-e3e5-41a5-8a25-1e3f5f883ae4
+    prod: arn:aws:acm:us-east-1:963777545862:certificate/ee3a5994-e3e5-41a5-8a25-1e3f5f883ae4
   fullstack:
     apiPath: api
     bucketName: "${opt:stage, 'dev'}client"
