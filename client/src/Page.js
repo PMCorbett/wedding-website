@@ -53,7 +53,6 @@ const PageLink = styled(NavLink).attrs({ activeClassName: 'nav-active' })`
   color: #095534;
   text-decoration: none;
   padding: 12px;
-  margin: 12px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #095534;
@@ -74,6 +73,20 @@ const PageLink = styled(NavLink).attrs({ activeClassName: 'nav-active' })`
 function Page({ children }: Props) {
   return (
     <PageWrapper>
+      <Pane
+        background="#fff"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <PageLink to="/" exact>
+          Home
+        </PageLink>
+        <PageLink to="/rsvp">RSVP</PageLink>
+        <PageLink to="/service">The Service</PageLink>
+        <PageLink to="/reception">Reception</PageLink>
+        <PageLink to="/information">Useful Information</PageLink>
+      </Pane>
       <PageHeader>
         <Logo src={logo} />
         <Title>
@@ -83,15 +96,7 @@ function Page({ children }: Props) {
           <Heading>10th August 2019</Heading>
         </Title>
       </PageHeader>
-      <Pane display="flex" alignItems="center" justifyContent="center">
-        <PageLink to="/" exact>
-          Home
-        </PageLink>
-        <PageLink to="/rsvp">RSVP</PageLink>
-        <PageLink to="/service">The Service</PageLink>
-        <PageLink to="/reception">Reception</PageLink>
-        <PageLink to="/information">Useful Information</PageLink>
-      </Pane>
+
       <PageContent>{children}</PageContent>
     </PageWrapper>
   );
