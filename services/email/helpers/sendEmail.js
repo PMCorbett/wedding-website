@@ -29,7 +29,7 @@ const sendEmail = ({ to, htmlBody, textBody, subject }: SendArgs) => {
         Data: subject,
       },
     },
-    Source: 'talkingheads@crowdlab.com',
+    Source: 'rsvp@patrickandgrace.com',
   };
 
   const ses = new AWS.SES({ region: 'eu-west-1' });

@@ -1,6 +1,13 @@
 // @flow
 import React, { Component } from 'react';
-import { Pane, Button, RadioGroup, TextInputField, Alert } from 'evergreen-ui';
+import {
+  Pane,
+  Button,
+  RadioGroup,
+  TextInputField,
+  Alert,
+  toaster,
+} from 'evergreen-ui';
 
 type Props = {};
 
@@ -9,6 +16,7 @@ type State = {
   accepts: 'indeterminate' | 'accept' | 'decline',
   number: number,
   dietaryRequirements: string,
+  declineReason: string,
   loading: boolean,
   sent: boolean,
   failed: boolean,
@@ -20,6 +28,7 @@ class Rsvp extends Component<Props, State> {
     accepts: 'indeterminate',
     number: 0,
     dietaryRequirements: '',
+    declineReason: '',
     loading: false,
     sent: false,
     failed: false,
@@ -42,9 +51,23 @@ class Rsvp extends Component<Props, State> {
   };
 
   submitForm = () => {
-    const { attendees, accepts, number, dietaryRequirements } = this.state;
+    const {
+      attendees,
+      accepts,
+      number,
+      dietaryRequirements,
+      declineReason,
+    } = this.state;
 
     if (attendees === '' || accepts === 'indeterminate') {
+      toaster.warning('Please let us know who is attending');
+
+      return;
+    }
+
+    if (accepts === 'accept' && number === 0) {
+      toaster.warning('Please let us know how many people are attending');
+
       return;
     }
 
@@ -56,7 +79,13 @@ class Rsvp extends Component<Props, State> {
         'Content-Type': 'application/json',
         // "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify({ attendees, accepts, number, dietaryRequirements }),
+      body: JSON.stringify({
+        attendees,
+        accepts,
+        number,
+        dietaryRequirements,
+        declineReason,
+      }),
     })
       .then(() => {
         this.setState({
@@ -66,6 +95,7 @@ class Rsvp extends Component<Props, State> {
           accepts: 'indeterminate',
           number: 0,
           dietaryRequirements: '',
+          declineReason: '',
         });
       })
       .catch(() => {
@@ -79,6 +109,7 @@ class Rsvp extends Component<Props, State> {
       accepts,
       number,
       dietaryRequirements,
+      declineReason,
       loading,
       failed,
       sent,
@@ -108,6 +139,7 @@ class Rsvp extends Component<Props, State> {
           <TextInputField
             onChange={this.updateText('attendees')}
             value={attendees}
+            required
             label="Name of attendees"
           />
         </Pane>
@@ -127,6 +159,7 @@ class Rsvp extends Component<Props, State> {
                 value={number}
                 label="Number of people attending"
                 type="number"
+                required
               />
             </Pane>
             <Pane>
@@ -136,6 +169,15 @@ class Rsvp extends Component<Props, State> {
                 label="Any special dietary requirements?"
               />
             </Pane>
+          </Pane>
+        )}
+        {accepts === 'decline' && (
+          <Pane>
+            <TextInputField
+              onChange={this.updateText('declineReason')}
+              value={declineReason}
+              label="We're sorry to hear that, please let us know why you can't make it"
+            />
           </Pane>
         )}
         <Pane>

@@ -5,7 +5,7 @@
   "main": "handler.js",
   "scripts": {
     "client": "node client/scripts/start.js",
-    "server": "NODE_ENV=dev DB_ENDPOINT=http://localhost:8000 sls offline start",
+    "server": "AWS_PROFILE=personal NODE_ENV=dev DB_ENDPOINT=http://localhost:8000 sls offline start",
     "dev": "concurrently  --kill-others-on-fail \"npm run server\" \"npm run client\" ",
     "build": "node client/scripts/build.js",
     "lint": "eslint .",
@@ -97,12 +97,8 @@
     "whatwg-fetch": "2.0.3"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/client/config/polyfills.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
+    "setupFiles": ["<rootDir>/client/config/polyfills.js"],
     "testMatch": [
       "<rootDir>/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/**/?(*.)(spec|test).{js,jsx,mjs}"
@@ -114,9 +110,7 @@
       "^.+\\.css$": "<rootDir>/client/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/client/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },

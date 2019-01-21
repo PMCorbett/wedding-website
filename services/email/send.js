@@ -1,7 +1,7 @@
 // @flow
 // import { AttributeValue as attr } from 'dynamodb-data-types';
 import type { Context, ProxyCallback } from 'flow-aws-lambda/index';
-// import sendEmail from './helpers/sendEmail';
+import sendEmail from './helpers/sendEmail';
 // import {
 //   formatConfirmationText,
 //   formatConfirmationHtml,
@@ -10,62 +10,62 @@ import type { Context, ProxyCallback } from 'flow-aws-lambda/index';
 // } from './helpers/formatEmail';
 
 export default (event: any, context: Context, callback: ProxyCallback) => {
-  callback(null, { statusCode: 204, body: '' });
-  // event.Records.forEach((record) => {
-  //   if (record.eventName === 'INSERT') {
-  //     if (record.dynamodb) {
-  //       const formData = attr.unwrap(record.dynamodb.NewImage);
+  const {
+    attendees,
+    accepts,
+    number,
+    dietaryRequirements,
+    declineReason,
+  } = JSON.parse(event.body);
 
-  //       const { origin } = formData;
+  console.log('event', event);
+  console.log(attendees, accepts, number, dietaryRequirements, declineReason);
 
-  //       const staffText = formatStaffText(formPages)({
-  //         formData,
-  //         host: origin,
-  //       });
-  //       const staffHtml = formatStaffHtml(formPages)({
-  //         formData,
-  //         host: origin,
-  //       });
+  const to = ['patrickmacorbett@gmail.com'];
 
-  //       const confirmationText = formatConfirmationText(formPages)({
-  //         formData,
-  //         host: origin,
-  //       });
-  //       const confirmationHtml = formatConfirmationHtml(formPages)({
-  //         formData,
-  //         host: origin,
-  //       });
+  if (accepts === 'decline') {
+    const declineText = `
+    <p><b>${attendees}</b> have declined attending.</p>
+    <p>They gave this reason:<p>
+    <p>${declineReason}</p>`;
 
-  //       const staffEmailTo =
-  //         formData.participantsAge === 'Other'
-  //           ? ['talkingheads@crowdlab.com']
-  //           : ['talkingheads@crowdlab.com', 'rapid@liveminds.co.uk'];
+    sendEmail({
+      to,
+      htmlBody: declineText,
+      textBody: declineText,
+      subject: 'RSVP: Decline to attend',
+    })
+      .then(() => {
+        callback(null, { statusCode: 204, body: '' });
+      })
+      .catch((err) => {
+        callback(err);
+      });
 
-  //       const staffEmailSend = sendEmail({
-  //         to: staffEmailTo,
-  //         htmlBody: staffHtml,
-  //         textBody: staffText,
-  //         subject: `New Order: ${formData.uuid}`,
-  //       });
+    return;
+  }
 
-  //       const confirmationEmailSend = sendEmail({
-  //         to: [formData.requesterEmail],
-  //         htmlBody: confirmationHtml,
-  //         textBody: confirmationText,
-  //         subject: `Order Number: ${formData.uuid}`,
-  //       });
+  if (accepts === 'accept') {
+    const acceptText = `
+    <p><b>${attendees}</b> would like to attend</p>
+    <p>There will be ${number} of them.<p>
+    <p>Dietary Requiremets: ${dietaryRequirements}</p>`;
 
-  //       Promise.all([staffEmailSend, confirmationEmailSend])
-  //         .then(() => {
-  //           callback(null, { statusCode: 204, body: '' });
-  //         })
-  //         .catch((err) => {
-  //           callback(null, {
-  //             statusCode: err.statusCode,
-  //             body: JSON.stringify(err),
-  //           });
-  //         });
-  //     }
-  //   }
-  // });
+    sendEmail({
+      to,
+      htmlBody: acceptText,
+      textBody: acceptText,
+      subject: 'RSVP: Will be attending',
+    })
+      .then(() => {
+        callback(null, { statusCode: 204, body: '' });
+      })
+      .catch((err) => {
+        callback(err);
+      });
+
+    return;
+  }
+
+  callback(new Error('[400] Bad Request'));
 };

@@ -7,6 +7,8 @@ import Routes from './Routes';
 import logo from './logo.jpg';
 import bruges from './bruges.jpg';
 
+type Props = {};
+
 const PageLink = styled(NavLink).attrs({ activeClassName: 'nav-active' })`
   color: #095534;
   text-decoration: none;
