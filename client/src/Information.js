@@ -7,6 +7,7 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 const MapWrapper = styled.div`
   width: 500px;
   height: 350px;
+  max-width: 90vw;
 
   .leaflet-container {
     height: 400px;
@@ -26,7 +27,7 @@ function Information() {
   const zoom = 12;
 
   return (
-    <Pane display="flex" alignItems="center">
+    <Pane>
       <Pane>
         <Heading size={600}>Places to stay</Heading>
         <Heading margin="default">Badgers Mount</Heading>
@@ -42,7 +43,7 @@ function Information() {
           </Link>
         </Paragraph>
       </Pane>
-      <Pane margin={24}>
+      <Pane marginTop={24}>
         <MapWrapper>
           <Map center={centerPosition} zoom={zoom}>
             <TileLayer

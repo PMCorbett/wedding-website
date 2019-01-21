@@ -86,6 +86,7 @@ function Page({ children }: Props) {
         <PageLink to="/service">The Service</PageLink>
         <PageLink to="/reception">Reception</PageLink>
         <PageLink to="/information">Useful Information</PageLink>
+        <PageLink to="/gifts">Gifts</PageLink>
       </Pane>
       <PageHeader>
         <Logo src={logo} />

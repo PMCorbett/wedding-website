@@ -6,13 +6,20 @@ import church from './church.jpg';
 
 const Image = styled.img`
   max-height: 360px;
-  flex-basis: 40%;
+  flex-basis: 1 0 40%;
   margin: 24px 0;
+  max-width: 100%;
 `;
 
 function Service() {
   return (
-    <Pane display="flex" alignItems="center" justifyContent="space-between">
+    <Pane
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      flexWrap="wrap"
+      width="100%"
+    >
       <Pane marginRight={24}>
         <Paragraph>
           The service will be held at St Mary&apos;s church in Hinckley at

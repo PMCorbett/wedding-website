@@ -90,7 +90,7 @@ class Rsvp extends Component<Props, State> {
     ];
 
     return (
-      <Pane>
+      <Pane width={600} maxWidth="90vw">
         {failed && (
           <Alert
             intent="danger"
@@ -139,7 +139,11 @@ class Rsvp extends Component<Props, State> {
           </Pane>
         )}
         <Pane>
-          <Button isLoading={loading} onClick={this.submitForm}>
+          <Button
+            isLoading={loading}
+            onClick={this.submitForm}
+            intent="success"
+          >
             Send RSVP
           </Button>
         </Pane>

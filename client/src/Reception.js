@@ -7,9 +7,9 @@ import badgersmount from './badgersmount.jpg';
 
 const Image = styled.img`
   max-height: 360px;
-  flex-basis: 40%;
+  flex-basis: 1 0 40%;
   margin: 24px 0;
-  max-width: 50%;
+  max-width: 100%;
 `;
 
 const InfoLink = styled(Link)`
@@ -18,12 +18,17 @@ const InfoLink = styled(Link)`
 
 function Reception() {
   return (
-    <Pane display="flex" alignItems="center" justifyContent="space-between">
+    <Pane
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      flexWrap="wrap"
+    >
       <Pane marginRight={24}>
         <Paragraph>
           Celebrations will follow at Badgers Mount hotel in Elmesthorpe.
         </Paragraph>
-        <Paragraph>Evening guests can arrive from 6.30pm</Paragraph>
+        <Paragraph>Evening guests can arrive from 7.30pm</Paragraph>
         <Heading marginTop={24}>Need a place to stay?</Heading>
         <Paragraph>
           There are rooms available at Badgers Mount, to book you will need to
