@@ -107,26 +107,22 @@ class App extends PureComponent<Props> {
                 </Pane>
                 <Route
                   path="/:subpath?"
-                  render={({ match, history }) => {
-                    console.log(match);
-
-                    return (
-                      <CornerDialog
-                        title="RSVP"
-                        isShown={
-                          match.params.subpath !== 'rsvp' &&
-                          match.params.subpath !== 'information'
-                        }
-                        intent="success"
-                        onConfirm={() => history.push('/rsvp')}
-                        onCloseComplete={() => {}}
-                        confirmLabel="RSVP Now"
-                        containerProps={{ maxWidth: '90%' }}
-                      >
-                        Please RSVP as soon as you can
-                      </CornerDialog>
-                    );
-                  }}
+                  render={({ match, history }) => (
+                    <CornerDialog
+                      title="RSVP"
+                      isShown={
+                        match.params.subpath !== 'rsvp' &&
+                        match.params.subpath !== 'information'
+                      }
+                      intent="success"
+                      onConfirm={() => history.push('/rsvp')}
+                      onCloseComplete={() => {}}
+                      confirmLabel="RSVP Now"
+                      containerProps={{ maxWidth: '90%' }}
+                    >
+                      Please RSVP as soon as you can
+                    </CornerDialog>
+                  )}
                 />
               </Pane>
             </Pane>
