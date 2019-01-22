@@ -10,8 +10,8 @@ function Gifts() {
           Gifts
         </Heading>
         <Paragraph>
-          As we&apos;ve had one house for time now we have most of the
-          essentials; so rather than presents we are requesting donations
+          As we moved into our house some time ago, we have most of the
+          essentials, so rather than presents we are requesting donations
           towards home rennovation projects.
         </Paragraph>
       </Pane>
@@ -24,7 +24,10 @@ function Gifts() {
         </Paragraph>
         <Paragraph>
           If you want to help us get to the root of this problem{' '}
-          <Link>donate here</Link>.
+          <Link href="https://paypal.me/pools/c/8bzzqKYnxP" target="_blank">
+            donate here
+          </Link>
+          .
         </Paragraph>
       </Pane>
       <Pane>
@@ -35,7 +38,10 @@ function Gifts() {
         </Paragraph>
         <Paragraph>
           If you&apos;ve got the drive to help with this project,{' '}
-          <Link>donate here</Link>.
+          <Link href="https://paypal.me/pools/c/8bzzA8iRW4" target="_blank">
+            donate here
+          </Link>
+          .
         </Paragraph>
       </Pane>
       <Pane>
@@ -45,7 +51,11 @@ function Gifts() {
           could do with replacing.
         </Paragraph>
         <Paragraph>
-          If you want to set us both up comfortably, <Link>donate here</Link>.
+          If you want to set us both up comfortably,{' '}
+          <Link href="https://paypal.me/pools/c/8bzzEOY78a" target="_blank">
+            donate here
+          </Link>
+          .
         </Paragraph>
       </Pane>
     </Pane>
