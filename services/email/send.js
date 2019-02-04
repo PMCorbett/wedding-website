@@ -21,7 +21,7 @@ export default (event: any, context: Context, callback: ProxyCallback) => {
   console.log('event', event);
   console.log(attendees, accepts, number, dietaryRequirements, declineReason);
 
-  const to = ['patrickmacorbett@gmail.com'];
+  const to = ['patrickmacorbett@gmail.com', 'gmcampton@gmail.com'];
 
   if (accepts === 'decline') {
     const declineText = `
