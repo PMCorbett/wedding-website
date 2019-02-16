@@ -33,7 +33,7 @@ function Information() {
         <Heading margin="default">Badgers Mount</Heading>
         <Paragraph>
           There are rooms available at Badgers Mount, to book you will need to
-          phone the venue directly on 01455 818161.
+          phone the venue directly on 01455 848161.
         </Paragraph>
         <Heading margin="default">Premier Inn</Heading>
         <Paragraph>

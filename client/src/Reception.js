@@ -32,7 +32,7 @@ function Reception() {
         <Heading marginTop={24}>Need a place to stay?</Heading>
         <Paragraph>
           There are rooms available at Badgers Mount, to book you will need to
-          phone directly on 01455 818161
+          phone directly on 01455 848161
         </Paragraph>
         <Paragraph>
           If you&apos;d like to stay somewhere else,{' '}
